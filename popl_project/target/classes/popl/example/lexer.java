@@ -10,20 +10,14 @@ public class lexer {
     String input;
     int position;
     char ch;
-    ArrayList<String> variables;
-    ArrayList<String> numbers;
-    ArrayList<String> operators;
-    ArrayList<String> otherCharacters; //probably don't need this in the longrun but just to be safe
+    ArrayList<String> tokens;
 
     // Constructor to initialize the lexer with the input string.
     public lexer(String input) {
         this.input = input;
         this.position = 0;
         this.ch = input.charAt(position);
-        this.variables = new ArrayList<>();
-        this.numbers = new ArrayList<>();
-        this.operators = new ArrayList<>();
-        this.otherCharacters = new ArrayList<>();
+        this.tokens = new ArrayList<>();
     }
     // Parses the input string and stores the lexed tokens.
     public void parse() {
@@ -48,7 +42,7 @@ public class lexer {
                         ch = '\0';
                     }
                 }
-                variables.add(identifier.toString());
+                tokens.add(identifier.toString());
             } else if (isDigit()) {
                 // Parses a sequence of digits as a number.
                 StringBuilder number = new StringBuilder();
@@ -61,10 +55,10 @@ public class lexer {
                         ch = '\0';
                     }
                 }
-                numbers.add(number.toString());
+                tokens.add(number.toString());
             } else {
                 // Handles other characters as needed.
-                otherCharacters.add(String.valueOf(ch));
+                tokens.add(String.valueOf(ch));
                 position++;
                 if (position < input.length()) {
                     ch = input.charAt(position);
@@ -87,36 +81,12 @@ public class lexer {
         return input;
     }
     // Returns the array of lexed tokens.
-    public ArrayList<String> getVariables() {
-        return variables;
-    }
-    // Returns the array of numbers.
-    public ArrayList<String> getNumbers() {
-        return numbers;
-    }
-    // Returns the array of operators.
-    public ArrayList<String> getOperators() {
-        return operators;
-    }
-    // Returns the array of other characters.
-    public ArrayList<String> getOtherCharacters() {
-        return otherCharacters;
+    public ArrayList<String> getTokens() {
+        return tokens;
     }
     // Adds a token to the array of lexed tokens.
-    public void addToArray(String value) {
-        variables.add(value);
-    }
-    // Adds a token to the array of numbers.
-    public void addToNumbers(String value) {
-        numbers.add(value);
-    }
-    // Adds a token to the array of operators.
-    public void addToOperators(String value) {
-        operators.add(value);
-    }
-    // Adds a token to the array of other characters.
-    public void addToOtherCharacters(String value) {
-        otherCharacters.add(value);
+    public void addToTokens(String value) {
+        tokens.add(value);
     }
     // Checks if the lexer has reached the end of the input.
     public boolean isEOF() {
