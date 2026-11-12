@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+// A simple lexer for parsing input strings into variable tokens,
+// number tokens, operator tokens, and other character tokens.
+// The parsed tokens will be sent to the Parser, 
+// which will use the tokens to build an abstract syntax tree.
 
 public class lexer {
     // The input string to be lexed, the current position in the input, 
