@@ -1,3 +1,4 @@
+package popl.example;
 import java.util.ArrayList;
 // A simple lexer for parsing input strings into variable tokens,
 // number tokens, operator tokens, and other character tokens.
